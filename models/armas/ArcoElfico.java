@@ -13,11 +13,4 @@ public class ArcoElfico extends Arma<ChuvaDeFlechas> {
         // Requisito: Destreza ≥ 8
         return definidor >= 8;
     }
-
-    @Override
-    public void atacar() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'atacar'");
-    }
-    
 }

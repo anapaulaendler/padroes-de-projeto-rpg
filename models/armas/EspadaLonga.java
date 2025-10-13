@@ -11,12 +11,5 @@ public class EspadaLonga extends Arma<CorteProfundo> {
     public boolean temRequisito(int definidor) {
         // Requisito: Força ≥ 10
         return definidor >= 10;
-    }
-
-    @Override
-    public void atacar() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'atacar'");
-    }
-    
+    }    
 }
