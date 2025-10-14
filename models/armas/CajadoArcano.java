@@ -1,16 +1,17 @@
 package models.armas;
 
 import models.efeitos.BolaDeFogo;
+import models.personagens.Personagem;
 
 public class CajadoArcano extends Arma<BolaDeFogo> {
 
     public CajadoArcano() {
-        super(8, 25, new BolaDeFogo());
+        super(8, 25, new BolaDeFogo(), TipoArma.CAJADO, 12);
     }
 
+    // Requisito: Inteligência ≥ 12
     @Override
-    public boolean temRequisito(int definidor) {
-        // Requisito: Inteligência ≥ 12
-        return definidor >= 12;
-    }    
+    public boolean validarUsoDeArma(Personagem atacador) {
+        return atacador.temInteligenciaSuficiente(this.preRequisitoValorMinino) && atacador.armasUtilizaveis.contains(this.tipoArma);
+    }   
 }

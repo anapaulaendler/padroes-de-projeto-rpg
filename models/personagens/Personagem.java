@@ -18,4 +18,16 @@ public abstract class Personagem {
         this.habilidadePassiva = habilidadePassiva;
         this.armasUtilizaveis = armasUtilizaveis;
     }
+
+    public boolean temDestrezaSuficiente(int valorMinimo) {
+        return this.atributos.destreza >= valorMinimo;
+    }
+
+    public boolean temInteligenciaSuficiente(int valorMinimo) {
+        return this.atributos.inteligencia >= valorMinimo;
+    }
+
+    public boolean temForcaSuficiente(int valorMinimo) {
+        return this.atributos.forca >= valorMinimo;
+    }
 }
