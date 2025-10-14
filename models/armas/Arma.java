@@ -27,5 +27,14 @@ public abstract class Arma<T extends EfeitoEspecial> implements IArma {
 
         atacador.mana -= this.custoMana;
         vitima.vida -= this.danoBase;
+
+        if (this.efeitoEspecial != null) {
+            EfeitoEspecial efeitoParaAplicar = this.efeitoEspecial.clone();
+            vitima.adicionarEfeito(efeitoParaAplicar);
+            
+            System.out.println("Efeito " + efeitoParaAplicar.nome + " aplicado em " + 
+                            vitima.getClass().getSimpleName() + " por " + 
+                            efeitoParaAplicar.turnosAtivo + " turnos");
+        }
     }
 }
