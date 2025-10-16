@@ -5,7 +5,7 @@ import models.personagens.Personagem;
 public class EspadaLonga extends Arma<CorteProfundo> {
 
     public EspadaLonga() {
-        super(10, 5, new CorteProfundo(), TipoArma.ESPADA, 10);
+        super(10, 5, new CorteProfundo(), TipoArma.ESPADA, 10, 0.3, 0.7);
     }
 
     // Requisito: Força ≥ 10
