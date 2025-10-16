@@ -2,6 +2,8 @@ package models.personagens;
 
 import java.util.*;
 
+import contexto.ContextoArma;
+import models.armas.Arma;
 import models.armas.TipoArma;
 import models.efeitos.EfeitoEspecial;
 
@@ -12,16 +14,38 @@ public abstract class Personagem {
     public String habilidadePassiva;
     public List<TipoArma> armasUtilizaveis;
     public List<EfeitoEspecial> efeitosAtivos;
-
-    protected Personagem(int vida, int mana, AtributosBase atributos, String habilidadePassiva, List<TipoArma> armasUtilizaveis) {
+    private ContextoArma _contextoArma;
+    
+    protected Personagem(int vida, int mana, AtributosBase atributos, String habilidadePassiva, List<TipoArma> armasUtilizaveis, Arma<?> armaInicial) {
         this.vida = vida;
         this.mana = mana;
         this.atributos = atributos;
         this.habilidadePassiva = habilidadePassiva;
         this.armasUtilizaveis = armasUtilizaveis;
         this.efeitosAtivos = new ArrayList<>(); // Jogador começa sem efeitos ativos
+
+        this._contextoArma = new ContextoArma(armaInicial);
     }
 
+    //#region ARMAS
+    public boolean equiparArma(Arma<?> novaArma) {
+        if (!novaArma.validarUsoDeArma(this)) return false;
+
+        _contextoArma.setArma(novaArma);
+        System.out.println(this.getClass().getSimpleName() + " equipou " + novaArma.getClass().getSimpleName());
+        return true;
+    }
+
+    public void atacar(Personagem alvo) {
+        if (_contextoArma != null) {
+            _contextoArma.atacar(this, alvo);
+        } else {
+            System.out.println(this.getClass().getSimpleName() + " não tem arma equipada!");
+        }
+    }
+    //#endregion ARMAS
+
+    //#region EFEITOS
     public void adicionarEfeito(EfeitoEspecial efeito) {
         // Se o efeito já existe, renova a duração
         for (EfeitoEspecial efeitoExistente : efeitosAtivos) {
@@ -62,6 +86,7 @@ public abstract class Personagem {
         
         efeitosAtivos.removeAll(efeitosParaRemover);
     }
+    //#endregion EFEITOS
 
     //#region BOOLEANS
     public boolean temDestrezaSuficiente(int valorMinimo) {
