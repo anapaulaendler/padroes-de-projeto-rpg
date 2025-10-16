@@ -15,6 +15,10 @@ public class ContextoArma {
     }
 
     public void atacar(Personagem atacador, Personagem vitima) { 
+        if (!_arma.validarUsoDeArma(atacador)) {
+            System.out.println(atacador.getClass().getSimpleName() + " não pode usar " + _arma.getClass().getSimpleName());
+            return;
+        }
         _arma.atacar(atacador, vitima);
     }
 }
