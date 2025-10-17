@@ -13,12 +13,11 @@ public class Batalha {
     private Personagem _inimigo;
     private int _turnoAtual;
     private boolean _batalhaAtiva;
-    private ArmasFactory _fabricaArmas;
+    private ArmasFactory _fabricaArmas = new ArmasFactory();
     
-    public Batalha(Personagem jogador, Personagem inimigo, ArmasFactory fabricaArmas) {
+    public Batalha(Personagem jogador, Personagem inimigo) {
         this._jogador = jogador;
         this._inimigo = inimigo;
-        this._fabricaArmas = fabricaArmas;
         this._turnoAtual = 1;
         this._batalhaAtiva = true;
     }
