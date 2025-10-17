@@ -13,6 +13,7 @@ import models.personagens.Personagem;
  * - Context: Esta classe (ContextoArma)
  * - Strategy: Interface Arma  
  * - Concrete: EspadaLonga, ArcoElfico, etc.
+ * - Client: Personagem
  * 
  * 3. BENEFÍCIO: 
  * Personagem pode trocar estratégias (armas) em tempo de execução
