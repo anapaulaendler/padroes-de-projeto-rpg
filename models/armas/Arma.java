@@ -31,12 +31,18 @@ public abstract class Arma<T extends EfeitoEspecial> implements IArma {
             return; 
         }
 
-        atacador.mana -= this.custoMana;
+        // Só atacar se tiver mana
+        if (atacador.mana > 0)
+        {
+            atacador.mana -= this.custoMana;
 
-        int danoFinal = calcularDanoComCritico(this.danoBase);
-        vitima.vida -= danoFinal;
+            int danoFinal = calcularDanoComCritico(this.danoBase);
+            vitima.vida -= danoFinal;
 
-        tentarAplicarEfeito(vitima);
+            tentarAplicarEfeito(vitima);
+        }
+
+        recuperarMana(atacador);
     }
 
     //#region UTILS
@@ -61,6 +67,14 @@ public abstract class Arma<T extends EfeitoEspecial> implements IArma {
                                 vitima.getClass().getSimpleName() + " por " + 
                                 efeitoParaAplicar.turnosAtivo + " turnos");
             }
+        }
+    }
+
+    private void recuperarMana(Personagem atacador) {
+        Random random = new Random();
+        if (random.nextDouble() < 0.3) {
+            atacador.mana += this.custoMana;
+            System.out.println(atacador.getClass().getSimpleName() + " recupera " + this.custoMana + " de mana!");
         }
     }
     //#endregion UTILS
