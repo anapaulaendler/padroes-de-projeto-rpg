@@ -6,6 +6,15 @@ import contexto.Batalha;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ *  SEPARAÇÃO DE RESPONSABILIDADES:
+ *  
+ * - Batalha: Gerencia o fluxo de combate por turnos
+ * - Personagem: Estado do personagem e delegação de ataques (Strategy Context)
+ * - ContextoArma: Interface de estratégia de ataque 
+ * - Armas: Implementações concretas de estratégias (Concrete Strategies)
+ * - ArmasFactory: Fornecedor de estratégias disponíveis (não parte do Strategy)
+ */
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);

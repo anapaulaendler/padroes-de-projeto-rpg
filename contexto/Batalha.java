@@ -8,6 +8,21 @@ import factory.ArmasFactory;
 import java.util.List;
 import java.util.Scanner;
 
+/*
+ * Classe Batalha - Gerencia o fluxo de combate por turnos
+ * 
+ * 1. DECISÃO DE DESIGN:
+ * Apesar de compreender que as armas utilizáveis deviam estar dentro do próprio
+ * personagem (em uma lista, por exemplo), a inclusão da ArmasFactory nesta classe 
+ * representa uma simplificação consciente do sistema, baseada nas seguintes considerações:
+ * 
+ * - O foco do exercício é demonstrar o Strategy Pattern em ação durante o combate
+ * - Não há sistema de inventário persistente entre batalhas
+ * - Não existe mecânica de "compra" ou "aquisição" de armas fora da batalha
+ * 
+ * 2. OBSERVAÇÕES:
+ * - O padrão Strategy foi aplicado na classe Personagem, que usa a função atacar() para realizar ataques
+ */
 public class Batalha {
     private Personagem _jogador;
     private Personagem _inimigo;
@@ -36,11 +51,7 @@ public class Batalha {
             
             System.out.println("\nTurno do Jogador");
             executarTurnoJogador(scanner);
-            
-            if (verificarFimDeBatalha()) break;
-            
-            processarEfeitosTurno();
-            
+                        
             if (verificarFimDeBatalha()) break;
             
             System.out.println("\nTurno do Inimigo");
