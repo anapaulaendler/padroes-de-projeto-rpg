@@ -9,6 +9,7 @@ public class MachadoDeGuerra extends Arma<Castor> {
         super(18, 5, new Castor(), TipoArma.MACHADO, 15, 0.2, 0.25);
     }
 
+    // Requisito: Força ≥ 15
     @Override
     public boolean validarUsoDeArma(Personagem atacador) {
         return atacador.temForcaSuficiente(this.preRequisitoValorMinino) && 
