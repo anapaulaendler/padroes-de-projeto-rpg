@@ -31,6 +31,10 @@ public class ArmasFactory {
      * método get()). Assim, o "esqueleto" das armas é salvo em ARMAS, mas elas não 
      * necessariamente são instanciadas durante a inicialização (ou seja, Supplier para 
      * lazy initialization)
+     * 
+     * Nota-se que tanto nesse arquivo quanto em PersonagensFactory, o Supplier é 
+     * chamado de fábrica não por ser uma fábrica em si (no sentido do padrão), mas sim
+     * porque ela carrega a estrutura, a receita, o esqueleto da criação do objeto. 
      */
     private final Map<String, Supplier<Arma<?>>> registroArmas;
 
@@ -43,6 +47,7 @@ public class ArmasFactory {
         registrarArma("EspadaLonga", EspadaLonga::new);
         registrarArma("ArcoElfico", ArcoElfico::new);
         registrarArma("CajadoArcano", CajadoArcano::new);
+        registrarArma("MachadoDeGuerra", MachadoDeGuerra::new);
     }
     
     private void registrarArma(String nome, Supplier<Arma<?>> fabrica) {
@@ -50,7 +55,9 @@ public class ArmasFactory {
     }
     
     public List<String> getNomesArmasDisponiveis() {
-        return new ArrayList<>(registroArmas.keySet());
+        List<String> nomes = new ArrayList<>(registroArmas.keySet());
+        Collections.sort(nomes); // Ordena alfabeticamente
+        return nomes;
     }
     
     public Arma<?> criarArma(String nome) {
