@@ -20,7 +20,7 @@ public abstract class EfeitoEspecial implements Cloneable {
     public String nome;
     public String descricao;
     public int turnosAtivo;
-    public int dano; 
+    public Integer dano; // ... Em C# eu poderia usar um int?...
 
     protected EfeitoEspecial(String nome, String descricao, int turnosAtivo, Integer dano) {
         this.nome = nome;
